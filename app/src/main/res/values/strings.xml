@@ -7,4 +7,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="authentic_and_organic">Authentic and Organic</string>
     <string name="designed_by">Designed By</string>
+    <string name="login_bio_bazaar">Login Bio Bazaar</string>
+    <string name="enter_your_email">Enter your email</string>
 </resources>

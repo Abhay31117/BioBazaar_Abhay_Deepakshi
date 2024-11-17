@@ -6,24 +6,32 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/biobazaar"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FarmerProducts"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
+
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false">
+
+        </activity>
+
         <activity
             android:name=".splash_screen_activity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
+        <activity
+            android:name=".MainLoginSignupActivity"
+            android:exported="true"
+            />
 
         <meta-data
             android:name="preloaded_fonts"

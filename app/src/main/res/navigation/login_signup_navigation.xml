@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_signup_navigation"
+    app:startDestination="@id/login_Signup_Fragment">
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.example.farmerproducts.login_fragment"
+        android:label="fragment_login_fragment"
+        tools:layout="@layout/fragment_login_fragment" />
+    <fragment
+        android:id="@+id/signup_fragment"
+        android:name="com.example.farmerproducts.signup_fragment"
+        android:label="fragment_signup_fragment"
+        tools:layout="@layout/fragment_signup_fragment" />
+    <fragment
+        android:id="@+id/login_Signup_Fragment"
+        android:name="com.example.farmerproducts.Login_Signup_Fragment"
+        android:label="fragment_login__signup_"
+        tools:layout="@layout/fragment_login__signup_" >
+        <action
+            android:id="@+id/action_login_Signup_Fragment_to_login_fragment"
+            app:destination="@id/login_fragment" />
+        <action
+            android:id="@+id/action_login_Signup_Fragment_to_signup_fragment"
+            app:destination="@id/signup_fragment" />
+    </fragment>
+</navigation>
