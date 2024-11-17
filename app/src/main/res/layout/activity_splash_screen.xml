@@ -19,13 +19,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:stateListAnimator="@anim/fade_in_right"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/afacad"
+        android:fontFamily="@font/alata"
+        android:textColor="@color/black"
         android:text="@string/authentic_and_organic"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/splash_imageview"
@@ -40,8 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/designed_by"
-        android:fontFamily="@font/afacad"
+        android:fontFamily="@font/alata"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         android:layout_marginTop="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
