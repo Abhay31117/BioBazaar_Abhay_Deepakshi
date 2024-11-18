@@ -1,5 +1,6 @@
 package com.example.farmerproducts
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -11,7 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 
-class SignupFragment : Fragment() {
+class signup_fragment : Fragment() {
 
     private lateinit var usernameEditText: EditText
     private lateinit var emailEditText: EditText
@@ -41,6 +42,9 @@ class SignupFragment : Fragment() {
         // Set up button click listener
         signUpButton.setOnClickListener {
             registerUser()
+            val intent = Intent(activity, HomeActivity::class.java)
+            startActivity(intent)
+
         }
 
         return view

@@ -1,5 +1,6 @@
 package com.example.farmerproducts
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -36,7 +37,9 @@ class login_fragment : Fragment() {
         loginButton = view.findViewById(R.id.loginbtn)
 
         // Set login button click listener
-        loginButton.setOnClickListener { performLogin() }
+        loginButton.setOnClickListener { performLogin()
+
+        }
 
         return view
     }
@@ -58,9 +61,13 @@ class login_fragment : Fragment() {
                     // Login successful
                     Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
                     Log.d("LoginFragment", "Login success: ${auth.currentUser?.email}")
+
+                    val intent = Intent(activity, HomeActivity::class.java)
+                    startActivity(intent)
+
                 } else {
                     // Login failed
-                    Toast.makeText(context, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Login failed: Credentials are wrong", Toast.LENGTH_SHORT).show()
                     Log.e("LoginFragment", "Login error", task.exception)
                 }
             }
