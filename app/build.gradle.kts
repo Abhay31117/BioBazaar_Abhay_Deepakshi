@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     val kotlinVersion     = "1.3.71"
     val gradleVersion     = "4.0.0"
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -36,7 +37,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures{
-
+        dataBinding = true
         viewBinding = true
     }
 
@@ -49,6 +50,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     //library for animated nav bar
     implementation (libs.animatedbottombar.library)
@@ -57,10 +59,20 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-
+    implementation (libs.firebase.storage.ktx)
 
     // for fragment navigation
 
     implementation (libs.androidx.navigation.fragment.ktx)
     implementation (libs.androidx.navigation.ui.ktx)
+
+
+    // glide image
+
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+
+    // image picker
+
+    implementation (libs.imagepicker)
 }

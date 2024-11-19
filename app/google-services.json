@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "283658382966",
+    "project_id": "bio-bazaar-b1c63",
+    "storage_bucket": "bio-bazaar-b1c63.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283658382966:android:eb034a40c7eae2a2bef957",
+        "android_client_info": {
+          "package_name": "com.example.farmerproducts"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQSr4LE5HGMSt9i5Xk4X4agJlP7VPJyHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
