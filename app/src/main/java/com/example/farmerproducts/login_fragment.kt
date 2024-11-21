@@ -2,7 +2,7 @@ package com.example.farmerproducts
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +11,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 
 class login_fragment : Fragment() {
 
@@ -37,9 +39,7 @@ class login_fragment : Fragment() {
         loginButton = view.findViewById(R.id.loginbtn)
 
         // Set login button click listener
-        loginButton.setOnClickListener { performLogin()
-
-        }
+        loginButton.setOnClickListener { performLogin() }
 
         return view
     }
@@ -48,27 +48,54 @@ class login_fragment : Fragment() {
         val email = emailEditText.text.toString().trim()
         val password = passwordEditText.text.toString().trim()
 
-        // Validate inputs
-        if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(context, "Please fill in both email and password", Toast.LENGTH_SHORT).show()
+        // Validate email and password locally
+        if (email.isEmpty()) {
+            emailEditText.error = "Email is required"
+            emailEditText.requestFocus()
             return
         }
 
-        // Perform login
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailEditText.error = "Please enter a valid email"
+            emailEditText.requestFocus()
+            return
+        }
+
+        if (password.isEmpty()) {
+            passwordEditText.error = "Password is required"
+            passwordEditText.requestFocus()
+            return
+        }
+
+        // Authenticate with Firebase
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Login successful
                     Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
-                    Log.d("LoginFragment", "Login success: ${auth.currentUser?.email}")
-
-                    val intent = Intent(activity, HomeActivity::class.java)
+                    val intent = Intent(activity, profile_activity::class.java)
                     startActivity(intent)
-
                 } else {
-                    // Login failed
-                    Toast.makeText(context, "Login failed: Credentials are wrong", Toast.LENGTH_SHORT).show()
-                    Log.e("LoginFragment", "Login error", task.exception)
+                    // Handle Firebase exceptions
+                    when (val exception = task.exception) {
+                        is FirebaseAuthInvalidUserException -> {
+                            // Email not registered or invalid
+                            emailEditText.error = "Email not registered or invalid"
+                            emailEditText.requestFocus()
+                        }
+                        is FirebaseAuthInvalidCredentialsException -> {
+                            // Password is incorrect
+                            passwordEditText.error = "Incorrect password"
+                            passwordEditText.requestFocus()
+                        }
+                        else -> {
+                            Toast.makeText(
+                                context,
+                                "Login failed: ${exception?.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                 }
             }
     }

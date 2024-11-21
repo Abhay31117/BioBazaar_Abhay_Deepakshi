@@ -42,8 +42,6 @@ class signup_fragment : Fragment() {
         // Set up button click listener
         signUpButton.setOnClickListener {
             registerUser()
-            val intent = Intent(activity, HomeActivity::class.java)
-            startActivity(intent)
 
         }
 
@@ -100,6 +98,8 @@ class signup_fragment : Fragment() {
                     clearFields()
                     Toast.makeText(activity, "User registered successfully", Toast.LENGTH_SHORT)
                         .show()
+                    val intent = Intent(activity, HomeActivity::class.java)
+                    startActivity(intent)
                 } else {
                     // If registration fails, display a message to the user.
                     task.exception?.message?.let { message ->
